@@ -30,6 +30,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           "cursor-pointer rounded-lg",
           sizeStyles[size],
           variantStyles[variant],
+          disabled == true && "cursor-not-allowed",
           className
         )}
         {...props}
