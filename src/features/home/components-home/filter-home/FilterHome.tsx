@@ -4,7 +4,7 @@ import DateInput from "../../../../common/date-input/DateInput";
 
 export default function FilterHome() {
   return (
-    <div className="w-249 h-51 border border-[#EDEDED] p-4 rounded-2xl">
+    <div className="w-249 h-51 border border-[#EDEDED] p-4 rounded-2xl bg-white">
       <h1 className="font-medium text-3xl">Rental Mobil</h1>
 
       <div className="flex gap-8">
