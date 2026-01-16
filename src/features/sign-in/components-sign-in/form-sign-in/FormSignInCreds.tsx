@@ -9,25 +9,34 @@ export default function FormSignInCreds() {
   const { event, form, state } = useSignIn();
 
   return (
-    <form onSubmit={event.onSubmit} className="flex flex-col gap-8">
+    <form
+      onSubmit={event.onSubmit}
+      className="flex flex-col justify-center gap-8 h-143.5"
+    >
+      <div className="flex flex-col gap-4">
+        <h1 className="font-normal text-5xl">Welcome, User</h1>
+        <p className="text-sm text-[#9E9E9E]">
+          Platform cepat untuk beli dan sewa mobil tanpa ribet.
+        </p>
+      </div>
       <div className="flex flex-col gap-4">
         <InputGroup>
-          <label>Email</label>
+          <label className="text-sm">Email</label>
           <Input
-            className="h-8"
             {...form.register("email")}
             placeholder="Input your email"
+            className="h-8 placeholder:text-sm"
           />
           {form.errors.email && (
             <p className="text-sm text-red-500">{form.errors.email.message}</p>
           )}
         </InputGroup>
         <InputGroup>
-          <label>Password</label>
+          <label className="text-sm">Password</label>
           <InputPassword
-            inputClassName="h-8"
             {...form.register("password")}
             placeholder="Input your password"
+            inputClassName="placeholder:text-sm h-8"
           />
           {form.errors.password && (
             <p className="text-sm text-red-500">
