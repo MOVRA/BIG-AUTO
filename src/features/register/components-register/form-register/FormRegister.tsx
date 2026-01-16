@@ -16,7 +16,7 @@ export default function FormRegister() {
   const { event, form } = useRegister();
 
   return (
-    <form onSubmit={event.onSubmit} className="flex flex-col gap-8">
+    <form onSubmit={event.onSubmit} className="flex flex-col gap-8 bg-white">
       <div className="flex flex-col gap-4">
         <h1 className="font-normal text-5xl">Welcome, User</h1>
         <p className="text-sm text-[#9E9E9E]">
