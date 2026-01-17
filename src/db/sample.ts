@@ -14,7 +14,7 @@ export const carData = [
   {
     id: crypto.randomUUID(),
     title: "Nama kendaraan",
-    src: "empty-bg.svg",
+    src: "/empty-bg.svg",
     price: 120000000,
     seller: "Orang 1",
     location: "Kota Administrasi",
@@ -22,7 +22,7 @@ export const carData = [
   {
     id: crypto.randomUUID(),
     title: "Nama kendaraan",
-    src: "empty-bg.svg",
+    src: "/empty-bg.svg",
     price: 120000000,
     seller: "Orang 1",
     location: "Kota Administrasi",
@@ -30,7 +30,7 @@ export const carData = [
   {
     id: crypto.randomUUID(),
     title: "Nama kendaraan",
-    src: "empty-bg.svg",
+    src: "/empty-bg.svg",
     price: 120000000,
     seller: "Orang 1",
     location: "Kota Administrasi",
@@ -38,7 +38,7 @@ export const carData = [
   {
     id: crypto.randomUUID(),
     title: "Nama kendaraan",
-    src: "empty-bg.svg",
+    src: "/empty-bg.svg",
     price: 120000000,
     seller: "Orang 1",
     location: "Kota Administrasi",
@@ -46,7 +46,7 @@ export const carData = [
   {
     id: crypto.randomUUID(),
     title: "Nama kendaraan",
-    src: "empty-bg.svg",
+    src: "/empty-bg.svg",
     price: 120000000,
     seller: "Orang 1",
     location: "Kota Administrasi",
@@ -54,7 +54,7 @@ export const carData = [
   {
     id: crypto.randomUUID(),
     title: "Nama kendaraan",
-    src: "empty-bg.svg",
+    src: "/empty-bg.svg",
     price: 120000000,
     seller: "Orang 1",
     location: "Kota Administrasi",
@@ -62,7 +62,7 @@ export const carData = [
   {
     id: crypto.randomUUID(),
     title: "Nama kendaraan",
-    src: "empty-bg.svg",
+    src: "/empty-bg.svg",
     price: 120000000,
     seller: "Orang 1",
     location: "Kota Administrasi",
@@ -70,7 +70,7 @@ export const carData = [
   {
     id: crypto.randomUUID(),
     title: "Nama kendaraan",
-    src: "empty-bg.svg",
+    src: "/empty-bg.svg",
     price: 120000000,
     seller: "Orang 1",
     location: "Kota Administrasi",

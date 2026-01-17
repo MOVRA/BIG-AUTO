@@ -1,31 +1,34 @@
 import { useNavigate } from "react-router";
-import { formatToRupiah } from "../../../../utils/formatToRupiah";
+import { formatToRupiah } from "../../utils/formatToRupiah";
+import { twMerge } from "tailwind-merge";
 
-interface CardVehicleHomeProps {
+interface CardVehicleProps {
   id: string;
   src: string;
   title: string;
   price: number;
   seller: string;
   location: string;
+  className?: string;
 }
 
-export default function CardVehicleHome({
+export default function CardVehicle({
   id,
   src,
   title,
   price,
   seller,
   location,
-}: CardVehicleHomeProps) {
+  className,
+}: CardVehicleProps) {
   const navigate = useNavigate();
 
   return (
     <div
-      className="w-55 cursor-pointer bg-white"
+      className={twMerge(`w-55 cursor-pointer bg-white`, className)}
       onClick={() => navigate(`/vehicle/${id}`)}
     >
-      <img src={src} className="w-55 h-47 mb-3.25 object-cover" />
+      <img src={src} className="w-full h-47 mb-3.25 object-cover" />
       <div className="mb-8">
         <h2 className="font-light">{title}</h2>
         <p className="font-medium">{formatToRupiah(price)}</p>
