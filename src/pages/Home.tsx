@@ -1,7 +1,7 @@
 import { carData } from "../db/sample";
 import FilterHome from "../features/home/components-home/filter-home/FilterHome";
 import CategoryHome from "../features/home/components-home/category-home/CategoryHome";
-import CardVehicleHome from "../features/home/components-home/card-vehicle-home/CardVehicleHome";
+import CardVehicle from "../common/card-vehicle/CardVehicle";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <CategoryHome />
       <div className="flex flex-wrap w-249 gap-6 border border-[#EDEDED] p-4 rounded-2xl mb-7.25 bg-white">
         {carData.map((i) => (
-          <CardVehicleHome
+          <CardVehicle
             id={i.id}
             key={i.id}
             src={i.src}

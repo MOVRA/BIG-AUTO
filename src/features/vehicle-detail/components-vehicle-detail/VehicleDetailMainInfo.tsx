@@ -1,16 +1,16 @@
-interface VehcileMainInfoProps {
+interface VehcileDetailMainInfoProps {
   vehicleName: string;
   vehicleSystem: string;
   vehicleFeature: string[];
 }
 
-export default function VehcileMainInfo({
+export default function VehcileDetailMainInfo({
   vehicleName,
   vehicleSystem,
   vehicleFeature,
-}: VehcileMainInfoProps) {
+}: VehcileDetailMainInfoProps) {
   return (
-    <div className="flex flex-col gap-12 w-148.25 border border-[#EDEDED] p-4 rounded-2xl bg-white mt-4.5">
+    <div className="flex flex-col gap-12 w-148.25 border border-[#EDEDED] p-4 rounded-2xl bg-white">
       <div className="flex flex-col gap-2">
         <h2 className="text-3xl">{vehicleName}</h2>
         <p>{vehicleSystem}</p>
