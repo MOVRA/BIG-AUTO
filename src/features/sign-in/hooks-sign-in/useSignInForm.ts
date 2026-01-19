@@ -1,6 +1,11 @@
+import {
+  schemaSignIn,
+  schemaSignInOtp,
+  type SchemaSignIn,
+  type SchemaSignInOtp,
+} from "../schema-sign-in/schema-sign-in";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type SchemaSignIn, schemaSignIn } from "../schema-sign-in/schema-sign-in";
 
 export function useSignInForm() {
   return useForm<SchemaSignIn>({
@@ -8,6 +13,15 @@ export function useSignInForm() {
     defaultValues: {
       email: "",
       password: "",
+    },
+  });
+}
+
+export function useSignInOtpForm() {
+  return useForm<SchemaSignInOtp>({
+    resolver: zodResolver(schemaSignInOtp),
+    defaultValues: {
+      otp: "",
     },
   });
 }

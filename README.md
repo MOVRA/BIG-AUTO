@@ -1,73 +1,231 @@
-# React + TypeScript + Vite
+# BIG-AUTO Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dokumentasi ini menjelaskan struktur, arsitektur, dan konvensi pengembangan **Frontend BIG-AUTO**. Dokumen ini ditujukan untuk memudahkan developer baru maupun existing dalam memahami alur kerja dan struktur folder project.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧩 Tentang Aplikasi
 
-## React Compiler
+**Big Auto** adalah aplikasi frontend yang dibangun dengan pendekatan **feature-based architecture**, sehingga setiap fitur berdiri relatif independen, terstruktur, dan scalable untuk pengembangan jangka panjang.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack (Asumsi Umum)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+> Sesuaikan bila ada perbedaan
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **React + TypeScript**
+* **State Management**: (Zustand / Redux / TanStack Query)
+* **Form Handling**: React Hook Form + Zod
+* **HTTP Client**: Axios / Fetch
+* **Build Tool**: Vite / Webpack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Struktur Folder Utama
+
+```
+big-auto/
+├─ dist/                # Build output (production)
+├─ node_modules/        # Dependencies
+├─ public/              # Static public assets
+├─ src/                 # Source code utama
+└─ README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📂 Struktur `src/`
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├─ assets/      # Asset statis (icons, images, fonts)
+├─ common/      # Helper / util reusable lintas fitur
+├─ db/          # Dummy data / local data (mock)
+├─ features/    # Feature-based modules (inti aplikasi)
+├─ hooks/       # Global reusable hooks
+├─ layout/      # Layout wrapper (auth, dashboard, etc)
+├─ lib/         # Library abstraction / config (axios, queryClient, etc)
+├─ models/      # Global types / interfaces
+```
+
+---
+
+## ⭐ Feature-Based Architecture (`src/features`)
+
+Setiap folder di dalam `features` merepresentasikan **1 fitur / halaman utama** aplikasi.
+
+### Contoh Struktur Feature
+
+```
+features/
+└─ sign-in/
+   ├─ components-sign-in/
+   ├─ hooks-sign-in/
+   ├─ models-sign-in/
+   ├─ schema-sign-in/
+   ├─ service-sign-in/
+   └─ store-sign-in/
+```
+
+### Penjelasan Subfolder
+
+| Folder         | Fungsi                              |
+| -------------- | ----------------------------------- |
+| `components-*` | Komponen UI khusus fitur tersebut   |
+| `hooks-*`      | Custom hooks khusus fitur           |
+| `models-*`     | TypeScript types / interfaces fitur |
+| `schema-*`     | Schema validasi (Zod / Yup)         |
+| `service-*`    | API service / HTTP request          |
+| `store-*`      | State management khusus fitur       |
+
+> ❗ **Catatan**: Nama folder selalu mengikuti pola `nama-folder-nama-fitur` untuk konsistensi dan keterbacaan.
+
+---
+
+## 📌 Daftar Feature Saat Ini
+
+### 🏠 Home
+
+```
+features/home/
+├─ components-home
+├─ hooks-home
+├─ model-home
+├─ service-home
+└─ store-home
+```
+
+Digunakan untuk:
+
+* Halaman utama
+* List kendaraan
+* Banner, rekomendasi, dll
+
+---
+
+### 📝 Register
+
+```
+features/register/
+├─ hooks-register
+├─ schema-register
+└─ service-register
+```
+
+Digunakan untuk:
+
+* Form pendaftaran user
+* Validasi input register
+* API register
+
+---
+
+### 🔐 Sign In
+
+```
+features/sign-in/
+├─ components-sign-in
+├─ hooks-sign-in
+├─ models-sign-in
+├─ schema-sign-in
+├─ service-sign-in
+└─ store-sign-in
+```
+
+Digunakan untuk:
+
+* Autentikasi user
+* Login form
+* Penyimpanan auth state
+
+---
+
+### 🚗 Vehicle Detail
+
+```
+features/vehicle-detail/
+├─ components-vehicle-detail
+└─ hooks-vehicle-detail
+```
+
+Digunakan untuk:
+
+* Detail kendaraan
+* Informasi spesifikasi
+* Interaksi user terhadap kendaraan
+
+---
+
+## 🔁 Reusable Layer
+
+### `src/hooks`
+
+Custom hooks global yang bisa digunakan lintas fitur.
+
+Contoh:
+
+* `useDebounce`
+* `useAuth`
+
+---
+
+### `src/lib`
+
+Abstraksi library & konfigurasi global.
+
+Contoh:
+
+* Axios instance
+* Query Client
+* Token handler
+
+---
+
+### `src/models`
+
+Global type & interface yang dipakai lintas fitur.
+
+---
+
+### `src/layout`
+
+Layout wrapper aplikasi.
+
+Contoh:
+
+* AuthLayout
+* DashboardLayout
+
+---
+
+## 🧠 Prinsip Arsitektur
+
+* ✅ **Separation of Concerns**
+* ✅ **Scalable & Maintainable**
+* ✅ **Low Coupling antar fitur**
+* ✅ **Naming konsisten**
+
+---
+
+## 📏 Konvensi Penulisan
+
+* Gunakan **TypeScript strict**
+* Satu fitur **tidak boleh langsung mengakses store/service fitur lain**
+* Reusable logic → pindahkan ke `common` atau `hooks`
+
+---
+
+## 🚀 Development Flow Singkat
+
+1. Buat folder fitur baru di `features/`
+2. Definisikan schema → models → service → hooks → components
+3. Hubungkan ke routing & layout
+
+---
+
+## 📄 Penutup
+
+Dokumentasi ini bersifat **living document**. Setiap perubahan arsitektur atau penambahan fitur baru **wajib** di-update di README ini agar konsistensi project tetap terjaga.
+
+Happy coding 🚀

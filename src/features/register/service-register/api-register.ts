@@ -1,8 +1,8 @@
 import { AxiosAuth } from "../../../lib/axios";
 import type { SchemaRegister } from "../schema-register/schema-register";
 
-export async function register(data: SchemaRegister) {
-  const call = await AxiosAuth(`/api/auth/register`, {
+export async function registerUser(data: SchemaRegister) {
+  const call = await AxiosAuth(`/auth/register`, {
     method: "POST",
     data,
   });

@@ -15,6 +15,5 @@ export async function RefreshToken(): Promise<string | null | undefined> {
   } catch {
     Cookies.remove("ident_1");
     Cookies.remove("ident_2");
-    window.location.href = "/login";
   }
 }

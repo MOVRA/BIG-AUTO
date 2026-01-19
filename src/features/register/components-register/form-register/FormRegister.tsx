@@ -1,19 +1,12 @@
-import {
-  Select,
-  SelectBox,
-  SelectButton,
-} from "../../../../common/select/Select";
-import { Controller } from "react-hook-form";
 import { Input } from "../../../../common/input";
 import { Button } from "../../../../common/button";
-import { InputPrefix } from "../../../../common/input-prefix";
 import { useRegister } from "../../hooks-register/useRegister";
 import { InputPassword } from "../../../../common/input-password";
 import InputGroup from "../../../../common/input-group/InputGroup";
 import AuthHelpInfo from "../../../../common/auth-help-info/AuthHelpInfo";
 
 export default function FormRegister() {
-  const { event, form } = useRegister();
+  const { event, form, state } = useRegister();
 
   return (
     <form onSubmit={event.onSubmit} className="flex flex-col gap-8 bg-white">
@@ -48,18 +41,7 @@ export default function FormRegister() {
         </InputGroup>
         <InputGroup>
           <label className="text-sm">City</label>
-          <Controller
-            name="city"
-            control={form.control}
-            render={({ field }) => (
-              <Select onSelect={field.onChange}>
-                <SelectButton textClassName="text-sm" className="h-8">
-                  Choose your city
-                </SelectButton>
-                <SelectBox></SelectBox>
-              </Select>
-            )}
-          />
+          <Input {...form.register("city")} />
           {form.errors.city && (
             <p className="text-sm text-red-500">{form.errors.city.message}</p>
           )}
@@ -79,10 +61,8 @@ export default function FormRegister() {
         </InputGroup>
         <InputGroup>
           <label className="text-sm">Phone Number</label>
-          <InputPrefix
-            prefix="+62"
+          <Input
             {...form.register("phone")}
-            prefixClassName="h-8 text-sm"
             className="h-8 placeholder:text-sm"
             placeholder="Input your phone number"
           />
@@ -117,8 +97,8 @@ export default function FormRegister() {
           )}
         </InputGroup>
       </div>
-      <Button className="w-100 h-10" variant="fill">
-        Sign Up
+      <Button type="submit" className="w-100 h-10" variant="fill">
+        {state.load ? "Signin Up . . ." : "Sign Up"}
       </Button>
       <AuthHelpInfo
         href="/sign-in"
