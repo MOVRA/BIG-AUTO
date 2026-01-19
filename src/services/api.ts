@@ -1,3 +1,4 @@
+import { AxiosAuth } from "../lib/axios";
 import { AUTH_API } from "../lib/constants";
 import type { FetchErrorType } from "../models/models";
 
@@ -18,4 +19,9 @@ export async function refreshToken(token: string) {
 
   const res = await call.json();
   return res.data;
+}
+
+export async function me() {
+  const call = await AxiosAuth(`/users/me`);
+  return call.data;
 }

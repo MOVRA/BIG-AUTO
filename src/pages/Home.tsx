@@ -1,9 +1,14 @@
 import { carData } from "../db/sample";
+import { useAuthStore } from "../stores/useAuthStore";
+import CardVehicle from "../common/card-vehicle/CardVehicle";
 import FilterHome from "../features/home/components-home/filter-home/FilterHome";
 import CategoryHome from "../features/home/components-home/category-home/CategoryHome";
-import CardVehicle from "../common/card-vehicle/CardVehicle";
 
 export default function Home() {
+  const { user } = useAuthStore();
+
+  console.log(user);
+
   return (
     <div className="space-y-6">
       <img src="/banner.png" className="w-[996px] h-[302px] mt-[29px]" />

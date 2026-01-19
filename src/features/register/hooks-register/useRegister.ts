@@ -1,4 +1,8 @@
+import { useState } from "react";
 import { useRegisterForm } from "./useRegisterForm";
+import { registerUser } from "../service-register/api-register";
+import toast from "react-hot-toast";
+import { AxiosError } from "axios";
 
 export function useRegister() {
   const {
@@ -8,7 +12,28 @@ export function useRegister() {
     formState: { errors },
   } = useRegisterForm();
 
-  const onSubmit = handleSubmit(async () => {});
+  const [load, setLoad] = useState(false);
 
-  return { form: { control, register, errors }, event: { onSubmit } };
+  const onSubmit = handleSubmit(
+    async (data) => {
+      try {
+        const res = await registerUser(data);
+
+        toast.success(res.message);
+
+        setLoad(true);
+      } catch (error) {
+        if (error instanceof AxiosError) toast.error(error.message);
+      } finally {
+        setLoad(false);
+      }
+    },
+    (e) => console.log(e),
+  );
+
+  return {
+    form: { control, register, errors },
+    event: { onSubmit },
+    state: { load },
+  };
 }

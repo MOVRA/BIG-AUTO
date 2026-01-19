@@ -1,8 +1,11 @@
 import { Link, NavLink } from "react-router";
 import Search from "../common/search-bar/Search";
+import { useAuthStore } from "../stores/useAuthStore";
 import IconLinkAction from "../common/icon-link-action/IconLinkAction";
 
 export default function Navbar() {
+  const { user } = useAuthStore();
+
   return (
     <div className="bg-white py-8 px-12 w-full h-26 drop-shadow-md flex items-center justify-center gap-8">
       <div className="flex items-center gap-6">
@@ -23,16 +26,19 @@ export default function Navbar() {
         <IconLinkAction to="/" src="/message-icon.svg" className="w-8 h-8" />
       </div>
 
+      {user.business_name && (
+        <div className="flex">
+          <Link to="/" className="flex items-center gap-4">
+            <img className="w-8 h-8" src="/profile-icon.svg" />
+            Nama Store
+          </Link>
+        </div>
+      )}
+
       <div className="flex">
         <Link to="/" className="flex items-center gap-4">
           <img className="w-8 h-8" src="/profile-icon.svg" />
-          Nama Store
-        </Link>
-      </div>
-      <div className="flex">
-        <Link to="/" className="flex items-center gap-4">
-          <img className="w-8 h-8" src="/profile-icon.svg" />
-          Nama Akun
+          {user.name}
         </Link>
       </div>
     </div>

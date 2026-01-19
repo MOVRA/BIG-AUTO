@@ -1,9 +1,12 @@
 import Navbar from "./Navbar";
 import { Outlet } from "react-router";
+import { Toaster } from "react-hot-toast";
+import AuthProvider from "../providers/AuthProvider";
 
 export default function AppLayout() {
   return (
-    <>
+    <AuthProvider>
+      <Toaster />
       <header>
         <Navbar />
       </header>
@@ -11,6 +14,6 @@ export default function AppLayout() {
         <Outlet />
       </main>
       <footer></footer>
-    </>
+    </AuthProvider>
   );
 }
